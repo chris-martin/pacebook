@@ -1,49 +1,56 @@
 chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
-    console.log("response", response);
-    var visitCount = response["visitCount"];
+    var visitCount = response.visitCount;
     if (visitCount !== undefined) {
         visitCount = JSON.parse(visitCount);
     } else {
         visitCount = 0;
     }
-    console.log("visit count: ", visitCount);
-    visitCount++;
 
-    var startDate = response["startDate"];
+    var startDate = response.startDate;
     if (startDate && !$.isEmptyObject(startDate)) {
         console.log(startDate);
         startDate = JSON.parse(startDate);
     }
-    console.log("startDate:", startDate);
-    var now = moment();
 
-    var data = {};
-    data["visitCount"] = visitCount;
+    var data = {}; // stuff to save
+
+    var now = moment();
     // save the date if it's been more than a day
     if (!startDate || !now.isSame(startDate, 'day')) {
-        data["startDate"] = JSON.stringify(now);
+        data.startDate = JSON.stringify(now);
+        visitCount = 0; // and reset the counter
     }
-    chrome.storage.sync.set(data, function() {
-        console.log("saved", data);
-    }); // asynchronously save
+    
+    visitCount++;
+    // save the visit count even if it hasn't been reset
+    data.visitCount = visitCount;
+
+    chrome.storage.sync.set(data); // asynchronously save
 
     var pacebookId = "pacebook";
-    if ($("#" + pacebookId).length == 0) {
-        $("<li><span id='" + pacebookId + "'></span></li>")
-            .addClass("navItem")
+    if ($("#" + pacebookId).length === 0) {
+        // don't create the element if it already exists
+        var li = $("<li></li>")
+            .addClass("navItem");
+        $("<span></span>")
+            .attr("id", pacebookId)
             .addClass("navLink")
-            .prependTo("#pageNav");
+            .css("padding-right",  "7px")
+            .appendTo(li);
+        console.log("sup", li);
+        console.log("pagenav?", $("#pageNav"));
+        $("#pageNav").prepend(li);
     }
+
     $("#" + pacebookId)
         .text(visitCount)
-        .css("background-color", "#3b5998")
         .css("font-size", (10 + visitCount) + "px");
+    if (visitCount > 15) {
+        $("#" + pacebookId)
+            .addClass("blink");
+    }
     
 
 });
 
 
-
-
-//var id = "pacebook";
-//$("<div></div>").attr("id", id)
