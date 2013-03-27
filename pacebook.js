@@ -47,7 +47,7 @@ chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
         $("<span></span>")
             .attr("id", pacebookId)
             .addClass("navLink")
-            .css("padding-right",  "7px")
+            .addClass("pacebook")
             .appendTo(li);
         $("#pageNav").prepend(li);
     }
@@ -59,6 +59,6 @@ chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
         $("#" + pacebookId)
             .addClass("blink");
     }
-    
-
 });
+
+// TODO get div with class storyContent, replace various components
