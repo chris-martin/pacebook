@@ -1,3 +1,15 @@
+// warn if multiple facebook tabs open
+chrome.extension.sendMessage({key: "incrementTabCount"}, function(response) {
+    if (response.tabCount > 1) {
+        window.alert("CLOSE YOUR OTHER " 
+            + (response.tabCount > 2 ? (response.tabCount - 1) + " " : "")
+            + "TAB"
+            + (response.tabCount > 2 ? "S" : "") 
+            + " YOU PRICK");
+    }
+});
+
+// display annoying visit counter
 chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
     var visitCount = response.visitCount;
     if (visitCount !== undefined) {
@@ -37,8 +49,6 @@ chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
             .addClass("navLink")
             .css("padding-right",  "7px")
             .appendTo(li);
-        console.log("sup", li);
-        console.log("pagenav?", $("#pageNav"));
         $("#pageNav").prepend(li);
     }
 
@@ -52,5 +62,3 @@ chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
     
 
 });
-
-

@@ -2,7 +2,7 @@
     "name": "Pacebook",
     "version": "1.0",
     "description": "stop using facebook so damn much",
-    //"background": { "scripts": ["background.js"] },
+    "background": { "scripts": ["background.js"] },
     "content_scripts": [
         {
             "matches": ["*://*.facebook.com/*"],
