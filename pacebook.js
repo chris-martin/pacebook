@@ -1,5 +1,5 @@
 // warn if multiple facebook tabs open
-chrome.extension.sendMessage({key: "incrementTabCount"}, function(response) {
+chrome.extension.sendMessage({key: "getTabCount"}, function(response) {
     if (response.tabCount > 1) {
         window.alert("CLOSE YOUR OTHER " 
             + (response.tabCount > 2 ? (response.tabCount - 1) + " " : "")
