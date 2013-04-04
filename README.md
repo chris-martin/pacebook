@@ -15,4 +15,10 @@ _To install:_
 - Point the file dialog to wherever you downloaded the ZIP. 
 - Enjoy?
 
+_To update:_
+
+- Re-download the ZIP and extract it to the same place as before. (Or just $ git pull.)
+- Open the Extensions view in Chrome.
+- Find the Pacebook extension and click the link that says "Reload".
+- Accept my gratitude for using my dumb thing.
 
