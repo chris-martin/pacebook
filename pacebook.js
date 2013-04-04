@@ -67,7 +67,7 @@ $("body").prepend(
         .attr("id", "thatcher")
         .attr("src", chrome.extension.getURL("thatcher_icon.jpg"))
         .addClass("thatcher")
-        .attr("title", "...");
+        .attr("title", "...")
 );
 // ...but not for half an hour.
-setTimeout(function() { $("#thatcher").addClass("scale"); }, 1000 * 60 * 30 );
+setTimeout(function() { $("#thatcher").addClass("scale"); }, 1000 * 60 * 30);
