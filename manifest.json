@@ -11,5 +11,6 @@
         }
     ], 
     "permissions": ["tabs", "storage"],
+    "web_accessible_resources": ["thatcher_icon.jpg"],
     "manifest_version": 2
 }

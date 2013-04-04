@@ -12,3 +12,19 @@
     padding-right: 7px;
     padding-left: 7px;
 }
+
+.thatcher {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    z-index: 10000;
+    visibility: hidden;
+}
+
+.scale {
+    -webkit-transition: all 2700s linear; /* 2 hours */
+    -webkit-transform: scale(500); 
+    visibility: visible;
+}
