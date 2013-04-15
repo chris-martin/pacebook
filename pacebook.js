@@ -21,15 +21,18 @@ chrome.storage.sync.get(["startDate", "visitCount"], function(response) {
     var startDate = response.startDate;
     if (startDate && !$.isEmptyObject(startDate)) {
         console.log(startDate);
-        startDate = JSON.parse(startDate);
+        startDate = moment(startDate);
     }
 
     var data = {}; // stuff to save
 
-    var now = moment();
+    // the party don't stop 'til 8 in the morning
+    var midnightOffset = moment.duration(8, 'hours')
+    var today = moment().subtract(midnightOffset).startOf('day').add(midnightOffset);
+
     // save the date if it's been more than a day
-    if (!startDate || !now.isSame(startDate, 'day')) {
-        data.startDate = JSON.stringify(now);
+    if (!startDate || !today.isSame(startDate)) {
+        data.startDate = today.format();
         visitCount = 0; // and reset the counter
     }
     
